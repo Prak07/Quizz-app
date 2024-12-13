@@ -71,26 +71,55 @@ def reset_quiz(request):
     # Redirect to index
     return redirect('/')
 
-def explain(request,question_id):
-    question = get_object_or_404(Question, id=question_id)
-    client = Groq(
-    api_key=os.environ.get("GROQ_API_KEY"),
-    )
-    explanation_prompt = (
-    f"Question: {question.Question}\n"
-    f"Correct Answer: {question.correct_option}\n"
-    "Please provide a detailed explanation of this question, "
-    "discussing the key concepts and why the correct answer is right. "
-    "Explain in a way that helps a student understand the underlying principles."
-    )
-    chat_completion = client.chat.completions.create(
-    messages=[
-        {
-            "role": "user",
-            "content": explanation_prompt,
-        }
-    ],
-    model="llama3-8b-8192",
-    )
-    explanation = chat_completion.choices[0].message.content
-    return render(request,"explain.html",{"explaination":explanation})
+def explain(request,question_id,user_answer):
+    question = get_object_or_404(Question, id=question_id)     
+    match question.correct_option:
+        case 'A':
+            correct=question.option_a
+        case 'B':
+            correct=question.option_b
+        case 'C':
+            correct=question.option_c
+        case 'D':
+            correct=question.option_d
+
+    match user_answer:
+        case 'A':
+            user_choice=question.option_a
+        case 'B':
+            user_choice=question.option_b
+        case 'C':
+            user_choice=question.option_c
+        case 'D':
+            user_choice=question.option_d
+    try:
+        # Initialize Groq client
+        client = Groq(api_key="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")
+
+        # Prepare the prompt
+        explanation_prompt = (
+            f"Question: {question.Question}\n"
+            f"User Choice: {user_choice}\n"
+            f"Correct Answer: {correct}\n"
+            "Please provide a detailed explanation of this question"
+        )
+
+        # Generate explanation
+        chat_completion = client.chat.completions.create(
+            messages=[
+                {
+                    "role": "user",
+                    "content": explanation_prompt,
+                }
+            ],
+            model="llama-3.3-70b-versatile",
+        )
+
+        explanation = chat_completion.choices[0].message.content
+
+    except Exception as e:
+        print(e)
+        explanation = "An error occurred while generating the explanation. Please try again later."
+
+    # Render the explanation in the template
+    return render(request, "explain.html", {"explanation": explanation,"question":question,"correct":correct,"user_choice":user_choice})

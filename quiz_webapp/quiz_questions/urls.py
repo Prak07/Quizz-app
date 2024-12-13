@@ -17,5 +17,6 @@ urlpatterns = [
     
     # Reset the quiz
     path('reset-quiz/', reset_quiz, name='reset_quiz'),
-    path('explain/', explain, name='reset_quiz'),
+    
+    path('explain/<int:question_id>/<str:user_answer>/', explain, name='reset_quiz'),
 ]

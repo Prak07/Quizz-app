@@ -202,7 +202,7 @@
                             {% else %}
                                 <span class="result-badge result-incorrect">
                                     <i class="fas fa-times me-1"></i>Incorrect
-                                    <a href="/explain/{{ result.question.id }}" class="explain-btn">
+                                    <a href="/explain/{{ result.question.id }}/{{result.user_answer}}" class="explain-btn">
                                         <i class="fas fa-info-circle me-1"></i>Explain
                                     </a>
                                 </span>
