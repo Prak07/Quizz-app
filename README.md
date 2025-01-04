@@ -1,38 +1,113 @@
-**Overview**
-This is a simple quiz application built using Django. The app allows users to:
+# Quiz Application with AI-Powered Explanations
 
-**Start a quiz session.**
-**Answer multiple-choice questions randomly selected from the database.**
-**Submit their answers.**
-**Get an explanation powered by AI Groq based on llama-3.3 for any incorrect answers provided by the user.**
-**The AI explanation provides a detailed explanation of why the selected answer was correct or incorrect.**
+This is a simple yet innovative quiz application built using Django. The app allows users to test their knowledge through multiple-choice questions (MCQs) and benefit from AI-powered explanations for incorrect answers, enhancing their learning experience.
 
-**Features**
-**Quiz Session:** The user can start a quiz session and be presented with random multiple-choice questions.
-**Answer Submission:** The user can select answers and submit them.
-**AI Explanation:** If the user answers incorrectly, the AI explains why the selected answer was wrong and provides an explanation.
-**Admin Interface:** The app includes an admin interface for managing categories, questions, and answers.
+## Features
 
-**Prerequisites**
-Before running the project, make sure you have the following installed:
+- **Quiz Sessions**: Users can start a quiz session and answer random MCQs from a selected category.
+- **Answer Submission**: Users can select answers for each question and submit them.
+- **AI-Powered Explanations**: For any incorrect answers, an AI (powered by Groq API and Llama-3.3) provides a detailed explanation of why the selected answer was wrong and clarifies the correct answer.
+- **Admin Interface**: An intuitive admin panel for managing quiz categories, questions, and answers.
 
-Python 3.8 or above
-Django 3.2 or above
-Groq 0.13.0 for the ai integration
+## Prerequisites
 
-**Assumptions**
-**Category Selection:** The user first selects a category from the available quiz categories. The categories are predefined in the database and represent different topics or types of quizzes available to the user.
+Before running the project, ensure you have the following installed:
 
-**Quiz Duration:** Once a category is selected, the user is presented with 10 multiple-choice questions (MCQs) randomly selected from that category. Each question will have four options (A, B, C, D), and the user can choose one option as their answer.
+- **Python**: Version 3.8 or above.
+- **Django**: Version 3.2 or above.
+- **Groq API**: Version 0.13.0 for AI integration.
 
-**Answer Submission:** After the user selects an answer, they can submit it. The system will check if the answer is correct or incorrect, and this is stored in the database for future reference.
+## Assumptions
 
-**AI Explanation for Incorrect Answers:** If the user answers a question incorrectly, they will have the option to request an AI-generated explanation. This explanation provides insights into why the selected answer is incorrect and what the correct answer should be, based on the reasoning of the AI.
+1. **Category Selection**:
+   - Users choose a category from the predefined list available in the database.
+   - Categories represent various topics or quiz types.
 
-**Results:** At the end of the quiz, the user is shown the total number of questions they answered, along with the breakdown of correct and incorrect answers. For each incorrect answer, the AI explanation will be provided to help the user understand the mistake.
+2. **Quiz Duration**:
+   - Each quiz session consists of 10 randomly selected MCQs from the chosen category.
+   - Questions have four options (A, B, C, D), and users select one option as their answer.
 
-**Technologies Used**
-**Django:** Framework for the backend.
-**Groq API:** For generating AI-powered explanations.
-**SQLite:** For storing categories, questions, and answers in the database.
-**HTML, CSS:** For the frontend design.
+3. **Answer Submission**:
+   - Answers are submitted one by one.
+   - The system evaluates each answer for correctness and stores the results in the database for future reference.
+
+4. **AI Explanations for Incorrect Answers**:
+   - Users can request an AI-generated explanation for incorrect answers.
+   - The explanation provides insights into why the answer was incorrect and elaborates on the correct choice.
+
+5. **Results**:
+   - At the end of the quiz, users are shown their total score with a breakdown of correct and incorrect answers.
+   - AI explanations are provided for all incorrect responses.
+
+## Technologies Used
+
+### Backend:
+- **Django**: For web application development.
+- **Groq API**: For generating AI-powered explanations.
+- **SQLite**: To store categories, questions, and answers.
+
+### Frontend:
+- **HTML, CSS**: For creating a user-friendly and responsive interface.
+
+## Installation
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-username/quiz-app.git
+   ```
+
+2. **Navigate to the Project Directory**:
+   ```bash
+   cd quiz-app
+   ```
+
+3. **Set up a Virtual Environment**:
+   ```bash
+   python -m venv env
+   source env/bin/activate  # On Windows: .\env\Scripts\activate
+   ```
+
+4. **Install Dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+5. **Set up Environment Variables**:
+   - Configure the Groq API key for AI integration.
+   - Add `GROQ_API_KEY` to your environment variables.
+
+6. **Run Database Migrations**:
+   ```bash
+   python manage.py migrate
+   ```
+
+7. **Start the Development Server**:
+   ```bash
+   python manage.py runserver
+   ```
+
+8. **Access the Application**:
+   Open `http://127.0.0.1:8000` in your browser.
+
+## Usage
+
+1. **Select a Category**:
+   Choose a quiz category from the list.
+
+2. **Answer Questions**:
+   Respond to the questions presented one by one.
+
+3. **Request AI Explanation**:
+   For incorrect answers, request an AI explanation to understand the reasoning behind the correct choice.
+
+4. **View Results**:
+   At the end of the quiz, review your performance, including detailed explanations for incorrect responses.
+
+## Contributions
+
+This project was solely developed by **Prakhar Agarwal**, implementing the quiz logic, AI integration, and user interface.
+
+## Acknowledgments
+
+This application leverages the power of the Groq API and Llama-3.3 to deliver meaningful AI-driven explanations, enhancing the educational experience.
+
