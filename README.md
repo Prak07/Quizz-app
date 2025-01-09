@@ -53,7 +53,7 @@ Before running the project, ensure you have the following installed:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/quiz-app.git
+   git clone https://github.com/Prak07/quiz-app.git
    ```
 
 2. **Navigate to the Project Directory**:
